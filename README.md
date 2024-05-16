@@ -38,7 +38,7 @@ The key learning objective from this workshop could be simply summarised as:
 
 _Provide basic tools to develop PINNs for solving various differential models._
 
-However, more specifically we aim to:
+More specifically we aim to:
 
  - provide an understanding of the applications of PINNs as presented in the literature,
  - introduce the differences and comparisons between traditional neural networks (NN) and physics-informed neural networks (PINNs),
@@ -47,10 +47,10 @@ However, more specifically we aim to:
 
 With regards to specific PINNs content we cover:
 
-reviewing key case studies and applications in scientific literature,
-understanding the theoretical foundations and differences between NN and PINNs,
-implementing and solving both direct and inverse problems in 1D and 2D scenarios,
-applying advanced techniques for improving PINN performance and accuracy
+ - reviewing key case studies and applications in scientific literature,
+ - understanding differences between NN and PINNs,
+ - implementing and solving both direct and inverse problems in 1D and 2D scenarios,
+ - applying advanced techniques for improving PINN performance and accuracy
 
 
 ## Teaching material
