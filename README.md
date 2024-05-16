@@ -17,13 +17,13 @@ The workshop will be held on Friday 24 May 2024, between 14 and 18hrs (CLT).
 
 | Time          | Activity |
 | ------------- | --------- |
-| 14:00 – 15:00 | Wellcome and introduction to applications (Prof. Rodrigo Salas)|
+| 14:00 – 15:00 | Wellcome and introduction to applications (Rodrigo Salas)|
 | 15:00 – 15:15 | Coffee break |
-| 15:15 – 16:00 | Computational activity 1: NN vs. PINNs |
+| 15:15 – 16:00 | Computational activity 1: NN vs. PINNs (David Ortiz)|
 | 16:00 – 16:10 | Small Break |
-| 16:15 – 17:00 | Computational activity 2: Forward and inverse applications |
+| 16:15 – 17:00 | Computational activity 2: Forward and inverse applications (David Ortiz)|
 | 17:00 – 17:15 | Coffee break |
-| 17:15 – 18:00 | Some advanced practice and finall remarks |
+| 17:15 – 18:00 | Some advanced practice and finall remarks (David Ortiz)|
 
 
 ## This repository contents
