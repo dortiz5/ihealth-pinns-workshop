@@ -1,0 +1,12 @@
+name: comparative-nn-wave-env
+channels:
+  - conda-forge
+  - pypi
+dependencies:
+  - numpy
+  - pandas
+  - matplotlib
+  - jupyter
+  - pytorch
+  - scikit-learn
+  - scipy
