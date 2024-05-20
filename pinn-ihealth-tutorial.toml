@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pinns_workshop"
+version = "0.0.0"
+description = "Ihealth workshop about Physics-Informed Neural Networks (PINNs)."
+authors = [
+  { name="Rodrigo Salas", email="rodrigo.salas@uv.cl" },
+  { name="David Ortiz", email="david.ortiz.puerta@gmail.com" },
+]
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+      - numpy>=1.26
+  - scipy>=1.13
+  - matplotlib>=3.8
+  - jupyterlab>=4.2
+  - pytorch>=2.2
+  - sympy>=1.12
+  - ipympl>=0.9
+    "torch>=2.0",
+    "torchvision>=0.13",
+    "palmerpenguins>=0.1.4",
+    "pandas",
+    "ipykernel",
+    "scikit-image",
+    "notebook",
+    "torch_tools @ git+https://github.com/jdenholm/TorchTools.git",
+    "matplotlib",
+]
+
+[project.optional-dependencies]
+# test = [
+#     "pytest>=7.2.0",
+# ]
+lint = [
+    "black>=22.12.0",
+    # "pylint",
+    "pydocstyle",
+    "mypy>=1.0.0",
+    "jupyter-black",
+]
+
+[tool.setuptools]
+package-dir = {}

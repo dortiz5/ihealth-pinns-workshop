@@ -1,0 +1,12 @@
+name: pinn-ihealth-tutorial
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.11
+  - numpy>=1.26
+  - matplotlib>=3.8
+  - jupyterlab>=4.2
+  - pytorch>=2.2
+  - sympy>=1.12
+  - ipympl>=0.9
