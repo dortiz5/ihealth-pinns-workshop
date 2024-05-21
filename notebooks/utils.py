@@ -1,6 +1,7 @@
 # Importaciones de Matplotlib
-import matplotlib as mpl
+import matplotlib as mlp
 from matplotlib.colors import LinearSegmentedColormap
+
 
 # Definir el colormap personalizado
 # Definir los colores en RGB
@@ -21,7 +22,7 @@ cmap_ = LinearSegmentedColormap('RedGreenBlue', rgb)
 
 # Actualización de los parámetros de Matplotlib
 gray = '#5c5c5c' #'#5c5c5c' '000'
-mpl.rcParams.update(
+mlp.rcParams.update(
     {
         "text.color" : gray,
         "xtick.color" :gray,
@@ -30,18 +31,14 @@ mpl.rcParams.update(
         "axes.edgecolor" :gray,
         "axes.spines.right" : False,
         "axes.spines.top" : False,
-        'font.size' : 13,
-        'figure.constrained_layout.use': True,
+        'font.size' : 16,
+        #'figure.constrained_layout.use': True,
         'interactive': False,
         "font.family": 'serif',  # Use the Computer modern font
         "mathtext.fontset": "cm",
         "axes.formatter.use_mathtext": True,
         "axes.unicode_minus": False,
-    }
-)
-
-mpl.rcParams.update(
-    {
+        "legend.loc" : 'best',
         'text.usetex': False,
         'mathtext.fontset': 'stix',
     }

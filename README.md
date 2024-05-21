@@ -9,7 +9,7 @@ PINNs are deep learning models recently proposed as an alternative method for so
 
 ## Organizers
 
- - [Rodrigo Salas, Dr. Eng.](https://github.com/rodsalasf)
+ - [Rodrigo Salas, Dr. Eng.](https://sites.google.com/uv.cl/rodrigo-salas)
  - [David Ortiz, Ph. D.](https://github.com/dortiz5)
 
 If you have questions, comments or recommendations, you can send us an email 📧 at any of these addresses:
@@ -60,6 +60,8 @@ Some interesting videos and material for further studyes
 - Neural networks: [Interesting video series by 3Blue1Brown about neural networks and machine learning](https://www.3blue1brown.com/topics/neural-networks)
 
 - Automatic differentiation. Here you can find 3 links about automatic differentiation and dual numbers: [link 1](https://thenumb.at/Autodiff/), [link 2](https://blog.demofox.org/2014/12/30/dual-numbers-automatic-differentiation/), [link 3](https://en.wikipedia.org/wiki/Dual_number)
+
+- Autograd
 
 - [Physics Informed Neural Network for Computer Vision and Medical Imaging [1]](https://collab.dvb.bayern/display/TUMdlma/Physics+Informed+Neural+Network+for+Computer+Vision+and+Medical+Imaging). From this last link, we highlight the following table with different theoretical methods and applications:
 
