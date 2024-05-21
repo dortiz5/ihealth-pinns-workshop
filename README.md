@@ -27,7 +27,7 @@ The workshop will be held on Friday 24 May 2024, between 14 and 18hrs (CLT).
 | 14:00 – 15:15 | Welcome and introduction to applications|
 | 15:15 – 16:00 | Computational activity 1: ANN vs. PINNs |
 | 16:00 – 16:15 | Coffee Break |
-| 16:15 – 17:15 | Computational activity 2: Forward applications |
+| 16:15 – 17:15 | Computational activity 2: Forward applications in 2D|
 | 17:15 – 17:20 | Small break |
 | 17:20 – 17:55 | Computational activity 3: Inverse applications |
 

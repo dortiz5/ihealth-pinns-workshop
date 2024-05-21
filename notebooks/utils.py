@@ -22,8 +22,10 @@ cmap_ = LinearSegmentedColormap('RedGreenBlue', rgb)
 
 # Actualización de los parámetros de Matplotlib
 gray = '#5c5c5c' #'#5c5c5c' '000'
+
 mlp.rcParams.update(
     {
+        "image.cmap" : 'viridis', # plasma, inferno, magma, cividis
         "text.color" : gray,
         "xtick.color" :gray,
         "ytick.color" :gray,
@@ -31,13 +33,13 @@ mlp.rcParams.update(
         "axes.edgecolor" :gray,
         "axes.spines.right" : False,
         "axes.spines.top" : False,
+        "axes.formatter.use_mathtext": True,
+        "axes.unicode_minus": False,
+        
         'font.size' : 16,
         #'figure.constrained_layout.use': True,
         'interactive': False,
-        "font.family": 'serif',  # Use the Computer modern font
-        "mathtext.fontset": "cm",
-        "axes.formatter.use_mathtext": True,
-        "axes.unicode_minus": False,
+        "font.family": 'sans-serif',
         "legend.loc" : 'best',
         'text.usetex': False,
         'mathtext.fontset': 'stix',
