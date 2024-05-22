@@ -27,7 +27,7 @@ The workshop will be held on Friday 24 May 2024, between 14 and 18hrs (CLT).
 | 14:00 – 15:15 | Welcome and introduction to applications|
 | 15:15 – 16:00 | Computational activity 1: ANN vs. PINNs |
 | 16:00 – 16:15 | Coffee Break |
-| 16:15 – 17:15 | Computational activity 2: Forward applications in 2D|
+| 16:15 – 17:15 | Computational activity 2: Forward applications |
 | 17:15 – 17:20 | Small break |
 | 17:20 – 17:55 | Computational activity 3: Inverse applications |
 
@@ -53,7 +53,7 @@ More specifically we aim to:
 
 
 ## Some related material
-Some interesting videos and material for further studyes
+Some interesting videos and material for further studies:
 
 - Previous workshop by [Prof. Ph.D. Francisco Sahli](https://fsahli.github.io/): [Workshop on April](https://fsahli.github.io/PINN-notes/)
 
@@ -61,11 +61,11 @@ Some interesting videos and material for further studyes
 
 - Automatic differentiation. Here you can find 3 links about automatic differentiation and dual numbers: [link 1](https://thenumb.at/Autodiff/), [link 2](https://blog.demofox.org/2014/12/30/dual-numbers-automatic-differentiation/), [link 3](https://en.wikipedia.org/wiki/Dual_number)
 
-- Autograd
+- Autodifferentiation (torch.autograd) is a powerful tool for calculating the gradients of the PINN with respect to its input to evaluate the loss function; for more information, refer to the [tutorial](https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#a-gentle-introduction-to-torch-autograd).
 
-- [Physics Informed Neural Network for Computer Vision and Medical Imaging [1]](https://collab.dvb.bayern/display/TUMdlma/Physics+Informed+Neural+Network+for+Computer+Vision+and+Medical+Imaging). From this last link, we highlight the following table with different theoretical methods and applications:
+- [Physics Informed Neural Network for Computer Vision and Medical Imaging [1]](https://collab.dvb.bayern/display/TUMdlma/Physics+Informed+Neural+Network+for+Computer+Vision+and+Medical+Imaging).
 
-![Table from [1]](data/figures/methods_and_applications.png)
+- Ben Moseley [personal blog](https://benmoseley.blog/)
 
 
 ## Instalation and setup
