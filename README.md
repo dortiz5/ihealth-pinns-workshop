@@ -160,7 +160,7 @@ To return to the virtual environment, simply run the activate command again.
 #### 3. Install dependencies
 
 It is now time to install the dependencies for our code, for example PyTorch.
-The project has been packaged with a [`pinn-ihealth-tutorial.toml`](pinn-ihealth-tutorial.toml) so can be installed in one go.
+The project has been packaged with a [`pyproject.toml`](pyproject.toml) so can be installed in one go.
 From within the root directory in a active virtual environment run:
 ```
 pip install .
@@ -216,9 +216,7 @@ _Notes:_
 
 
 ## License
-All code is licensed under the MIT License, and the content is licensed under Creative Commons Attribution.
-
-The content of this repository is licensed under the [Creative Commons Attribution 4.0 License](http://choosealicense.com/licenses/cc-by-4.0/), and the accompanying source code is licensed under the [MIT License](https://opensource.org/licenses/mit-license.php).
+All code and content of this repository is licensed under the [MIT License](https://opensource.org/licenses/mit-license.php).
 
 ## Acknowledgements
 This repository was created based on the template of the [Institute of Computing for Climate Science](https://github.com/Cambridge-ICCS/ml-training-material) and the [harminic oscillator pinn workshop](https://github.com/benmoseley/harmonic-oscillator-pinn-workshop) by Ben Moseley.

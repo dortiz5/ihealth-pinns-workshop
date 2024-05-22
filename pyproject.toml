@@ -11,25 +11,17 @@ authors = [
   { name="David Ortiz", email="david.ortiz.puerta@gmail.com" },
 ]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 
 dependencies = [
-      - numpy>=1.26
-  - scipy>=1.13
-  - matplotlib>=3.8
-  - jupyterlab>=4.2
-  - pytorch>=2.2
-  - sympy>=1.12
-  - ipympl>=0.9
-    "torch>=2.0",
-    "torchvision>=0.13",
-    "palmerpenguins>=0.1.4",
-    "pandas",
-    "ipykernel",
-    "scikit-image",
-    "notebook",
-    "torch_tools @ git+https://github.com/jdenholm/TorchTools.git",
-    "matplotlib",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "matplotlib>=3.8",
+    "jupyterlab>=4.2",
+    "pytorch>=2.3",
+    "sympy>=1.12",
+    "ipympl>=0.9",
+    "ipykernel>=6.29"
 ]
 
 [project.optional-dependencies]
