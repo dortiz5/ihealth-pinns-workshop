@@ -96,7 +96,7 @@ def grad(outputs, inputs):
                         create_graph=True,
                         )[0]
     
-    
+#%% --------------------------------------------------------------------------- 
 g = 9.81  # gravity acceleration (m/s^2)
 L = 1.0   # Pendulum's rod length (m)
 theta0 = np.pi / 4  # Initial condition (Position in rads)
@@ -117,7 +117,7 @@ def pendulum(t, y):
 y0 = [theta0, omega0]
 
 
-
+#%% --------------------------------------------------------------------------- 
 
 from scipy.integrate import solve_ivp
 
@@ -141,6 +141,7 @@ plt.tight_layout()
 plt.show()
 
 
+#%% --------------------------------------------------------------------------- 
 
 # Add gaussian noise
 sigma = 0.05
@@ -148,8 +149,8 @@ noise = np.random.normal(0,sigma,theta.shape[0])
 theta_noisy = theta + noise
 print(f'SNR: {calculate_snr(theta_noisy, noise):.4f} dB')
 
-# Resample to 5Hz and cut to 2.5s
-resample = 5          # resample to 5Hz 
+# Resample and cut to 2.5s
+resample = 5          # resample 
 ctime = int(2.5*100)  # 2.5s times 100Hz
 
 theta_data = theta_noisy[:ctime:resample]
@@ -167,16 +168,18 @@ plt.grid(True)
 plt.show()
 
 
-
+#%% --------------------------------------------------------------------------- 
 
 torch.manual_seed(123)
 
 # training parameters
 hidden_layers = [1, 50, 50, 50, 1]
 learning_rate = 0.001
-training_iter = 40000
+training_iter = 50000
 
 
+
+#%% --------------------------------------------------------------------------- 
 # Define a loss function (Mean Squared Error) for training the network
 MSE_func = nn.MSELoss()
 
@@ -217,65 +220,65 @@ class NeuralNetwork(nn.Module):
         return self.layers(x)
     
     
+#%% --------------------------------------------------------------------------- 
+# Create an instance of the neural network 
+theta_nn = NeuralNetwork(hidden_layers)
+nparams = sum(p.numel() for p in theta_nn.parameters() if p.requires_grad)
+print(f'Number of trainable parameters: {nparams}')
 
-# # Create an instance of the neural network 
-# theta_nn = NeuralNetwork(hidden_layers)
-# nparams = sum(p.numel() for p in theta_nn.parameters() if p.requires_grad)
-# print(f'Number of trainable parameters: {nparams}')
-
-# # Define an optimizer (Adam) for training the network
-# optimizer = optim.Adam(theta_nn.parameters(), lr=0.001, 
-#                        betas= (0.9,0.999), eps = 1e-8)
+# Define an optimizer (Adam) for training the network
+optimizer = optim.Adam(theta_nn.parameters(), lr=0.001, 
+                       betas= (0.9,0.999), eps = 1e-8)
 
 
-# def NeuralNetworkLoss(forward_pass, t, theta_data, lambda1 = 1):
+#%% --------------------------------------------------------------------------- 
+def NeuralNetworkLoss(forward_pass, t, theta_data, lambda1 = 1):
     
-#     theta_nn = forward_pass(t)
-#     data_loss = lambda1 * MSE_func(theta_nn, theta_data)
+    theta_nn = forward_pass(t)
+    data_loss = lambda1 * MSE_func(theta_nn, theta_data)
     
-#     return  data_loss
+    return  data_loss
     
-# # Initialize a list to store the loss values
-# loss_values = []
+# Initialize a list to store the loss values
+loss_values = []
 
-# # Start the timer
-# start_time = time.time()
+# Start the timer
+start_time = time.time()
 
-# # Training the neural network
-# for i in range(training_iter):
+# Training the neural network
+for i in range(training_iter):
     
-#     optimizer.zero_grad()   # clear gradients for next train
+    optimizer.zero_grad()   # clear gradients for next train
 
-#     # input x and predict based on x
-#     loss = NeuralNetworkLoss(theta_nn,
-#                              t_data,
-#                              theta_data)    # must be (1. nn output, 2. target)
+    # input x and predict based on x
+    loss = NeuralNetworkLoss(theta_nn,
+                             t_data,
+                             theta_data)    # must be (1. nn output, 2. target)
     
-#     # Append the current loss value to the list
-#     loss_values.append(loss.item())
+    # Append the current loss value to the list
+    loss_values.append(loss.item())
     
-#     if i % 1000 == 0:  # print every 100 iterations
-#         print(f"Iteration {i}: Loss {loss.item()}")
+    if i % 1000 == 0:  # print every 100 iterations
+        print(f"Iteration {i}: Loss {loss.item()}")
     
-#     loss.backward() # compute gradients (backpropagation)
-#     optimizer.step() # update the ANN weigths
+    loss.backward() # compute gradients (backpropagation)
+    optimizer.step() # update the ANN weigths
 
-# # Stop the timer and calculate the elapsed time
-# end_time = time.time()
-# elapsed_time = end_time - start_time
-# print(f"Training time: {elapsed_time} seconds")
-
-
+# Stop the timer and calculate the elapsed time
+end_time = time.time()
+elapsed_time = end_time - start_time
+print(f"Training time: {elapsed_time} seconds")
 
 
-# theta_pred = theta_nn(t_phys)
+#%% --------------------------------------------------------------------------- 
 
-# print(f'Relative error: {relative_l2_error(theta_pred, theta_test)}')
+theta_pred = theta_nn(t_phys)
 
-# plot_comparison(t_phys, theta, theta_pred, loss_values)
+print(f'Relative error: {relative_l2_error(theta_pred, theta_test)}')
 
+plot_comparison(t_phys, theta, theta_pred, loss_values)
 
-
+#%% --------------------------------------------------------------------------- 
 # Create an instance of the neural network
 theta_pinn = NeuralNetwork(hidden_layers)
 nparams = sum(p.numel() for p in theta_pinn.parameters() if p.requires_grad)
@@ -286,7 +289,7 @@ optimizer = optim.Adam(theta_pinn.parameters(), lr=0.001,
                        betas= (0.9,0.999), eps = 1e-8)
 
 
-
+#%% --------------------------------------------------------------------------- 
 # Define t = 0 for boundary an initial conditions 
 t0 = torch.tensor(0., requires_grad=True).view(-1,1)
 
@@ -343,6 +346,7 @@ print(f"Training time: {elapsed_time} seconds")
 
 
 
+#%% --------------------------------------------------------------------------- 
 
 theta_pred = theta_pinn(t_phys)
 
