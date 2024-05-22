@@ -38,3 +38,4 @@ lint = [
 
 [tool.setuptools]
 package-dir = {}
+py-modules = []
