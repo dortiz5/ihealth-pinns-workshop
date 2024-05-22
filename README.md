@@ -106,7 +106,7 @@ Also, for the course, we recommend you to have the following:
 
 - A text editor, such as [vim/neovim](https://neovim.io/), [gedit](https://gedit.en.softonic.com/), [vscode](https://code.visualstudio.com/), or [sublimetext](https://www.sublimetext.com/), [pycharm](https://www.jetbrains.com/pycharm/) to open and edit python code files.
 - A terminal emulator, like [GNOME Terminal](https://help.gnome.org/users/gnome-terminal/stable/), [wezterm](https://wezfurlong.org/wezterm/index.html), [Windows Terminal (for Windows)](https://learn.microsoft.com/en-us/windows/terminal/), or [iTerm (for macOS)](https://iterm2.com/).
-- A Python virtual environment. We encourage you to install [miniconda](https://docs.anaconda.com/free/miniconda/index.html).
+- A Python virtual environment [(venv)](https://docs.python.org/3/library/venv.html). Also, we encourage you to install [miniconda](https://docs.anaconda.com/free/miniconda/index.html).
 
 
 ### git and GitHub
@@ -128,29 +128,92 @@ We highly recommend the local install approach. However, if you encounter issues
 
 
 ### Local Install
+we will now explain how to perform the local installation using `venv`
+
+#### 1. Clone or fork the repository
+Navigate to the directory you want to install this repository on your system and clone via https by running:
+```
+git clone https://github.com/dortiz5/ihealth-pinns-workshop.git
+```
+This will create a directory `ihealth-pinns-workshop/` with the contents of this repository.
+
+Please note that if you have a GitHub account and wish to save your work, we recommend [forking the repository](https://github.com/dortiz5/ihealth-pinns-workshop/fork) and cloning your fork, enabling you to push your changes and progress back to your fork for future reference.
 
 
+#### 2. Create a virtual environment
+Before installing any Python packages, it is crucial to create a Python virtual environment to keep the operating system's Python environment clean. This is especially good practice when working on multiple projects and is easy to do.
 
-## Comprobando la instalación
+To create a virtual environment, run:
+```
+python3 -m venv PINNvenv
+```
+This command creates a directory called `PINNvenv` with the virtual environment's software. To activate the environment, use:
+```
+source PINNvenv/bin/activate
+```
+You can now install packages within this isolated environment without affecting your base system. When you are finished, deactivate the environment by running:
+```
+deactivate
+```
+To return to the virtual environment, simply run the activate command again.
 
-Después de la instalación puedes comprobar si todo está instalado.
+#### 3. Install dependencies
 
-```console
-python probar_instalacion.py
+It is now time to install the dependencies for our code, for example PyTorch.
+The project has been packaged with a [`pinn-ihealth-tutorial.toml`](pinn-ihealth-tutorial.toml) so can be installed in one go.
+From within the root directory in a active virtual environment run:
+```
+pip install .
+```
+This will download the relevant dependencies into the venv as well as setting up the datasets that we will be using in the course.
+
+#### 4. Run the notebook
+
+From the current directory, launch the jupyter notebook server:
+```
+jupyter notebook
+```
+This command should then point you to the right location within your browser to use the notebook, typically [http://localhost:8888/](http://localhost:8888/).
+
+#### (Optional) Create a virtual environment with miniconda
+
+In addition to the `.toml`, this project has been package with a [`pinn-ihealth-tutorial.yml`](pinn-ihealth-tutorial.yml) to create and install the python 3 environment. **make sure you have conda installed**
+
+From within the root directory in a active virtual environment run:
+
+```
+conda env create -f pinn-ihealth-tutorial.yml
 ```
 
-Para comprobar si todo funciona, ejecute las demostraciones con
+This will create a `conda` enviroment named `pinn-ihealth-tutorial`. To activate it you just need to run:
 
-```console
-python demo.py
+```
+conda activate pinn-ihealth-tutorial
 ```
 
-
-### Local Install
 
 ### Google Colab
 
+Using Colab is advantageous as it provides access to GPU resources. To open the notebooks in Google Colab, click the links below for each exercise:
+
+* [Exercise 01](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/exercises/01_penguin_classification.ipynb) - [Worked Solution 01](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/worked-solutions/01_penguin_classification_solutions.ipynb)
+* [Exercise 02](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/exercises/02_penguin_regression.ipynb) - [Worked Solution 02](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/worked-solutions/02_penguin_regression_solutions.ipynb)
+* [Exercise 03](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/exercises/03_mnist_classification.ipynb) - [Worked Solution 03](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/worked-solutions/03_mnist_classification_solutions.ipynb)
+* [Exercise 04](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/exercises/04_ellipse_regression.ipynb) - [Worked Solution 04](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/worked-solutions/04_ellipse_regression_solutions.ipynb)
+
+_Notes:_
+* _Running in Google Colab requires a Google account._
+* _If you exit a Colab session, your work will be lost, so make sure to save any work you want to keep._
+
 ### Binder
+
+If a local installation is not feasible and you prefer not to sign up for a Google account, you can launch the repository on [Binder](https://mybinder.org/v2/gh/Cambridge-ICCS/ml-training-material/main).
+
+_Notes:_
+* _If you exit a Binder session, your work will be lost, so make sure to save any work you want to keep._
+* _Due to limited resources on Binder, running the training for exercises 3 and 4 may be challenging._
+
+
 
 ## License
 All code is licensed under the MIT License, and the content is licensed under Creative Commons Attribution.
@@ -158,4 +221,4 @@ All code is licensed under the MIT License, and the content is licensed under Cr
 The content of this repository is licensed under the [Creative Commons Attribution 4.0 License](http://choosealicense.com/licenses/cc-by-4.0/), and the accompanying source code is licensed under the [MIT License](https://opensource.org/licenses/mit-license.php).
 
 ## Acknowledgements
-This repository was created based on the template of the [Institute of Computing for Climate Science](https://github.com/Cambridge-ICCS/ml-training-material)
+This repository was created based on the template of the [Institute of Computing for Climate Science](https://github.com/Cambridge-ICCS/ml-training-material) and the [harminic oscillator pinn workshop](https://github.com/benmoseley/harmonic-oscillator-pinn-workshop) by Ben Moseley.
