@@ -21,7 +21,6 @@ dependencies = [
     "pytorch>=2.3",
     "sympy>=1.12",
     "ipympl>=0.9",
-    "notebook",
     "ipykernel>=6.29",
 ]
 
