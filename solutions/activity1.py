@@ -14,6 +14,7 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 
+# Function to calculate the signal-to-noise ratio
 def calculate_snr(signal, noise):    
     # Ensure numpy arrays
     signal, noise = np.array(signal), np.array(noise)
@@ -26,6 +27,7 @@ def calculate_snr(signal, noise):
     snr = 10 * np.log10(signal_power / noise_power)
     return snr
 
+# Function to calculate the relative l2 error
 def relative_l2_error(u_num, u_ref):
     # Calculate the L2 norm of the difference
     l2_diff = torch.norm(u_num - u_ref, p=2)
@@ -37,16 +39,17 @@ def relative_l2_error(u_num, u_ref):
     relative_l2 = l2_diff / l2_ref
     return relative_l2
 
+# Function to plot the solutions
 def plot_comparison(time, theta_true, theta_pred, loss):
     
     # Convert tensors to numpy arrays for plotting
     t_np = time.detach().numpy()
     theta_pred_np = theta_pred.detach().numpy()
 
-    # Create a figure with two subplots
+    # Create a figure with 2 subplots
     _, axs = plt.subplots(1, 2, figsize=(12, 6))
     
-    # Plot the actual y values
+    # Plot the true and predicted values
     axs[0].plot(t_np, theta_true, label = r'$\theta(t)$ (numerical solution)')
     axs[0].plot(t_np, theta_pred_np, label = r'$\theta_{pred}(t)$ (predicted solution) ')
     axs[0].set_title('Angular displacement Numerical Vs. Predicted')
@@ -55,7 +58,7 @@ def plot_comparison(time, theta_true, theta_pred, loss):
     axs[0].legend(loc='lower left', frameon=False)
 
 
-    # Plot the difference between the predicted and actual y values
+    # Plot the difference between the predicted and true values
     difference = np.abs(theta_true.reshape(-1,1) - theta_pred_np.reshape(-1,1))
     axs[1].plot(t_np, difference)
     axs[1].set_title('Absolute Difference')
@@ -67,12 +70,13 @@ def plot_comparison(time, theta_true, theta_pred, loss):
     plt.show()
 
     # Plot the loss values recorded during training
-    # Create a figure with two subplots
+    # Create a figure with 1 subplots
     _, axs = plt.subplots(1, 1, figsize=(6, 3))
     axs.plot(loss)
     axs.set_xlabel('Iteration')
     axs.set_ylabel('Loss')
     axs.set_yscale('log')
+    axs.set_xscale('log')
     axs.set_title('Training Progress')
     axs.grid(True)
 
@@ -112,6 +116,9 @@ def pendulum(t, y):
 # Initial conditions
 y0 = [theta0, omega0]
 
+
+
+
 from scipy.integrate import solve_ivp
 
 # Solve the initial value problem using Runge-Kutta 4th order
@@ -141,9 +148,9 @@ noise = np.random.normal(0,sigma,theta.shape[0])
 theta_noisy = theta + noise
 print(f'SNR: {calculate_snr(theta_noisy, noise):.4f} dB')
 
-# Resample to 10Hz and cut to 2.5s
-resample = 2          # resample to 10Hz 
-ctime = int(5*100)  # 2.5s times 100Hz
+# Resample to 5Hz and cut to 2.5s
+resample = 5          # resample to 5Hz 
+ctime = int(2.5*100)  # 2.5s times 100Hz
 
 theta_data = theta_noisy[:ctime:resample]
 t_data = t_eval[:ctime:resample]
@@ -162,13 +169,16 @@ plt.show()
 
 
 
-hidden_layers = [1, 10, 10, 10, 1]
+torch.manual_seed(123)
+
+# training parameters
+hidden_layers = [1, 50, 50, 50, 1]
 learning_rate = 0.001
 training_iter = 40000
 
+
 # Define a loss function (Mean Squared Error) for training the network
 MSE_func = nn.MSELoss()
-
 
 # Convert the NumPy arrays to PyTorch tensors and add an extra dimension
 # test time Numpy array to Pytorch tensor
@@ -205,96 +215,71 @@ class NeuralNetwork(nn.Module):
 
     def forward(self, x):
         return self.layers(x)
-
-# Define a neural network class with user defined layers and neurons
-class NeuralNetwork(nn.Module):
     
-    def __init__(self, hlayers):
-        super(NeuralNetwork, self).__init__()
-        
-        layers = []
-        for i in range(len(hlayers[:-2])):
-            layers.append(nn.Linear(hlayers[i], hlayers[i+1]))
-            layers.append(nn.Tanh())
-        layers.append(nn.Linear(hlayers[-2], hlayers[-1]))
-        
-        self.layers = nn.Sequential(*layers)
-        self.init_params
-        
-    def init_params(self):
-        """Xavier Glorot parameter initialization of the Neural Network
-        """
-        def init_normal(m):
-            if isinstance(m, nn.Linear):
-                nn.init.xavier_normal_(m.weight) # Xavier
-        self.apply(init_normal)
-
-    def forward(self, x):
-        return self.layers(x)
     
-# Create an instance of the neural network 
-theta_nn = NeuralNetwork(hidden_layers)
 
-# Define an optimizer (Adam) for training the network
-optimizer = optim.Adam(theta_nn.parameters(), lr=0.001, 
-                       betas= (0.9,0.999), eps = 1e-8)
+# # Create an instance of the neural network 
+# theta_nn = NeuralNetwork(hidden_layers)
+# nparams = sum(p.numel() for p in theta_nn.parameters() if p.requires_grad)
+# print(f'Number of trainable parameters: {nparams}')
+
+# # Define an optimizer (Adam) for training the network
+# optimizer = optim.Adam(theta_nn.parameters(), lr=0.001, 
+#                        betas= (0.9,0.999), eps = 1e-8)
 
 
-
-
-
-# Define a loss function (Mean Squared Error) for training the network
-MSE_func = nn.MSELoss()
-
-def NeuralNetworkLoss(forward_pass, t, theta_data, lambda1 = 1):
+# def NeuralNetworkLoss(forward_pass, t, theta_data, lambda1 = 1):
     
-    theta_nn = forward_pass(t)
-    data_loss = lambda1 * MSE_func(theta_nn, theta_data)
+#     theta_nn = forward_pass(t)
+#     data_loss = lambda1 * MSE_func(theta_nn, theta_data)
     
-    return  data_loss
+#     return  data_loss
     
-# Initialize a list to store the loss values
-loss_values = []
+# # Initialize a list to store the loss values
+# loss_values = []
 
-# Start the timer
-start_time = time.time()
+# # Start the timer
+# start_time = time.time()
 
-# Training the neural network
-for i in range(training_iter):
+# # Training the neural network
+# for i in range(training_iter):
     
-    optimizer.zero_grad()   # clear gradients for next train
+#     optimizer.zero_grad()   # clear gradients for next train
 
-    # input x and predict based on x
-    loss = NeuralNetworkLoss(theta_nn,
-                             t_data,
-                             theta_data)    # must be (1. nn output, 2. target)
+#     # input x and predict based on x
+#     loss = NeuralNetworkLoss(theta_nn,
+#                              t_data,
+#                              theta_data)    # must be (1. nn output, 2. target)
     
-    # Append the current loss value to the list
-    loss_values.append(loss.item())
+#     # Append the current loss value to the list
+#     loss_values.append(loss.item())
     
-    if i % 1000 == 0:  # print every 100 iterations
-        print(f"Iteration {i}: Loss {loss.item()}")
+#     if i % 1000 == 0:  # print every 100 iterations
+#         print(f"Iteration {i}: Loss {loss.item()}")
     
-    loss.backward() # compute gradients (backpropagation)
-    optimizer.step() # update the ANN weigths
+#     loss.backward() # compute gradients (backpropagation)
+#     optimizer.step() # update the ANN weigths
 
-# Stop the timer and calculate the elapsed time
-end_time = time.time()
-elapsed_time = end_time - start_time
-print(f"Training time: {elapsed_time} seconds")
+# # Stop the timer and calculate the elapsed time
+# end_time = time.time()
+# elapsed_time = end_time - start_time
+# print(f"Training time: {elapsed_time} seconds")
 
 
 
-theta_pred = theta_nn(t_phys)
 
-print(f'Relative error: {relative_l2_error(theta_pred, theta_test)}')
+# theta_pred = theta_nn(t_phys)
 
-plot_comparison(t_phys, theta, theta_pred, loss_values)
+# print(f'Relative error: {relative_l2_error(theta_pred, theta_test)}')
+
+# plot_comparison(t_phys, theta, theta_pred, loss_values)
 
 
 
 # Create an instance of the neural network
 theta_pinn = NeuralNetwork(hidden_layers)
+nparams = sum(p.numel() for p in theta_pinn.parameters() if p.requires_grad)
+print(f'Number of trainable parameters: {nparams}')
 
 # Define an optimizer (Adam) for training the network
 optimizer = optim.Adam(theta_pinn.parameters(), lr=0.001, 
