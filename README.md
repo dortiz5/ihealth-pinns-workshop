@@ -106,7 +106,7 @@ Also, for the course, we recommend you to have the following:
 
 - A text editor, such as [vim/neovim](https://neovim.io/), [gedit](https://gedit.en.softonic.com/), [vscode](https://code.visualstudio.com/), or [sublimetext](https://www.sublimetext.com/), [pycharm](https://www.jetbrains.com/pycharm/) to open and edit python code files.
 - A terminal emulator, like [GNOME Terminal](https://help.gnome.org/users/gnome-terminal/stable/), [wezterm](https://wezfurlong.org/wezterm/index.html), [Windows Terminal (for Windows)](https://learn.microsoft.com/en-us/windows/terminal/), or [iTerm (for macOS)](https://iterm2.com/).
-- A Python virtual environment [(venv)](https://docs.python.org/3/library/venv.html). Also, we encourage you to install [miniconda](https://docs.anaconda.com/free/miniconda/index.html).
+- We encourage you to install [miniconda](https://docs.anaconda.com/free/miniconda/index.html).
 
 
 ### git and GitHub
@@ -128,7 +128,7 @@ We highly recommend the local install approach. However, if you encounter issues
 
 
 ### Local Install
-we will now explain how to perform the local installation using `venv`
+we will now explain how to perform the local installation using `conda`
 
 #### 1. Clone or fork the repository
 Navigate to the directory you want to install this repository on your system and clone via https by running:
@@ -140,46 +140,13 @@ This will create a directory `ihealth-pinns-workshop/` with the contents of this
 Please note that if you have a GitHub account and wish to save your work, we recommend [forking the repository](https://github.com/dortiz5/ihealth-pinns-workshop/fork) and cloning your fork, enabling you to push your changes and progress back to your fork for future reference.
 
 
-#### 2. Create a virtual environment
-Before installing any Python packages, it is crucial to create a Python virtual environment to keep the operating system's Python environment clean. This is especially good practice when working on multiple projects and is easy to do.
+#### 2. Installing miniconda
+Installing conda is easy and it run in *Windows, macOS and Linux*. You just have to follow the [instructions](https://docs.anaconda.com/free/miniconda/miniconda-install/) on the website. **Make sure you test your installation!**
 
-To create a virtual environment, run:
-```
-python3 -m venv PINNvenv
-```
-This command creates a directory called `PINNvenv` with the virtual environment's software. To activate the environment, use:
-```
-source PINNvenv/bin/activate
-```
-You can now install packages within this isolated environment without affecting your base system. When you are finished, deactivate the environment by running:
-```
-deactivate
-```
-To return to the virtual environment, simply run the activate command again.
+#### 3. Creating a conda environment
+**Make sure you have conda installed**. This project has been package with a [`pinn-ihealth-tutorial.yml`](pinn-ihealth-tutorial.yml) to create and install the `python3` environment. 
 
-#### 3. Install dependencies
-
-It is now time to install the dependencies for our code, for example PyTorch.
-The project has been packaged with a [`pyproject.toml`](pyproject.toml) so can be installed in one go.
-From within the root directory in a active virtual environment run:
-```
-pip install .
-```
-This will download the relevant dependencies into the venv as well as setting up the datasets that we will be using in the course.
-
-#### 4. Run the notebook
-
-From the current directory, launch the jupyter notebook server:
-```
-jupyter notebook
-```
-This command should then point you to the right location within your browser to use the notebook, typically [http://localhost:8888/](http://localhost:8888/).
-
-#### (Optional) Create a virtual environment with miniconda
-
-In addition to the `.toml`, this project has been package with a [`pinn-ihealth-tutorial.yml`](pinn-ihealth-tutorial.yml) to create and install the python 3 environment. **make sure you have conda installed**
-
-From within the root directory in a active virtual environment run:
+In windows you have open the *Anaconda Prompt*, in macOS the *terminal application* and in Linux, a *terminal* window. Then, type the following code:
 
 ```
 conda env create -f pinn-ihealth-tutorial.yml
@@ -190,6 +157,20 @@ This will create a `conda` enviroment named `pinn-ihealth-tutorial`. To activate
 ```
 conda activate pinn-ihealth-tutorial
 ```
+to deactivate, you just need to run 
+
+```
+conda deactivate
+```
+
+#### 4. Run the notebook
+
+From the current directory, launch the jupyter notebook server:
+```
+jupyter notebook
+```
+This command should then point you to the right location within your browser to use the notebook, typically [http://localhost:8888/](http://localhost:8888/).
+
 
 
 ### Google Colab
