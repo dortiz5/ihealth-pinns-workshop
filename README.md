@@ -166,7 +166,7 @@ conda deactivate
 
 From the current directory, launch the jupyter notebook server:
 ```
-jupyter notebook
+jupyter lab
 ```
 This command should then point you to the right location within your browser to use the notebook, typically [http://localhost:8888/](http://localhost:8888/).
 
