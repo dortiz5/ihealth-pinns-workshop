@@ -100,6 +100,7 @@ def grad(outputs, inputs):
                         )[0]
     
 
+#%% --------------------------------------------------------------------------- 
 
 from scipy.integrate import solve_ivp
 
@@ -116,6 +117,7 @@ def calculate_snr(signal, noise):
     snr = 10 * np.log10(signal_power / noise_power)
     return snr
 
+#%% --------------------------------------------------------------------------- 
 
 g = 9.81  # gravity acceleration (m/s^2)
 L = 1.0   # Pendulum's rod length (m)
@@ -156,6 +158,7 @@ plt.tight_layout()
 plt.show()
 
 
+#%% --------------------------------------------------------------------------- 
 
 # Add gaussian noise
 sigma = 0.05
@@ -181,6 +184,7 @@ plt.title('Training data')
 plt.grid(True)
 plt.show()
 
+#%% --------------------------------------------------------------------------- 
 
 torch.manual_seed(123)
 
@@ -189,6 +193,7 @@ hidden_layers = [1, 60, 60, 60, 1]
 learning_rate = 0.001
 training_iter = 50000
 
+#%% --------------------------------------------------------------------------- 
 
 # Define a loss function (Mean Squared Error) for training the network
 MSE_func = nn.MSELoss()
@@ -230,7 +235,8 @@ class NeuralNetwork(nn.Module):
         return self.layers(x)
     
     
-    
+#%% --------------------------------------------------------------------------- 
+
 # Create an instance of the neural network 
 theta_pinn = NeuralNetwork(hidden_layers)
 nparams = sum(p.numel() for p in theta_pinn.parameters() if p.requires_grad)
@@ -246,6 +252,7 @@ gravs = []
 optimizer = optim.Adam(list(theta_pinn.parameters())+[grav], lr=0.001, 
                        betas= (0.9,0.999), eps = 1e-8)
 
+#%% --------------------------------------------------------------------------- 
 
 # Define t = 0 for boundary an initial conditions 
 t0 = torch.tensor(0., requires_grad=True).view(-1,1)
@@ -296,6 +303,9 @@ for i in range(training_iter):
     
     loss.backward() # compute gradients (backpropagation)
     optimizer.step() # update the ANN weigths
+
+
+#%% --------------------------------------------------------------------------- 
 
 # Stop the timer and calculate the elapsed time
 end_time = time.time()

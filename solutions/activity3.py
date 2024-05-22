@@ -55,13 +55,13 @@ def plot_comparison(u_true, u_pred, loss, k_evol):
     axs[1].set_ylabel(r'$t$')
     fig1.colorbar(im2, spacing='proportional',
                             shrink=0.5, ax=axs[1])
-        # Display the plot
+    # Display the plot
     plt.tight_layout()
     plt.show()
 
 
     # Plot the loss values recorded during training
-    # Create a figure with 1 subplots
+    # Create a figure with 2 subplots
     fig2, axs = plt.subplots(1, 2, figsize=(12, 6))
     # Plot the difference between the predicted and true values
     axs[0].plot(k_evol, label="PINN estimate")
@@ -81,7 +81,7 @@ def plot_comparison(u_true, u_pred, loss, k_evol):
     plt.tight_layout()
     plt.show()
     
-
+    
 def grad(outputs, inputs):
     """Computes the partial derivative of an output with respect 
     to an input.
@@ -96,10 +96,7 @@ def grad(outputs, inputs):
                         )[0]
     
     
-    
-    
-    
-    
+#%% --------------------------------------------------------------------------- 
 # Number of samples in x and t
 dom_samples = 100
 
@@ -127,8 +124,7 @@ plt.tight_layout()
 plt.show()
 
 
-
-
+#%% --------------------------------------------------------------------------- 
 from scipy.stats import qmc
 # LHS sampling strategy
 sampler = qmc.LatinHypercube(d=2)
@@ -154,7 +150,17 @@ plt.tight_layout()
 plt.show()
 
 
+#%% --------------------------------------------------------------------------- 
+# evaluate sample points in analytical function
+x_np = x_ten.detach().numpy()
+t_np = t_ten.detach().numpy()
+u_true = analytic_diffusion(x_np,t_np).reshape(1, -1)
+u_observ = u_true + np.random.normal(0,0.01,len(x_np))
+# convert observations in Pytorch tensors
+u_observ_t = torch.tensor(u_observ, requires_grad = True).float().reshape(-1,1)
 
+
+#%% --------------------------------------------------------------------------- 
 torch.manual_seed(123)
 
 # training parameters
@@ -163,7 +169,7 @@ learning_rate = 0.001
 training_iter = 40000
 
 
-
+#%% --------------------------------------------------------------------------- 
 # Define a loss function (Mean Squared Error) for training the network
 MSE_func = nn.MSELoss()
 
@@ -194,7 +200,7 @@ class NeuralNetwork(nn.Module):
         return self.layers(x)
     
     
-    
+#%% --------------------------------------------------------------------------- 
 # Create an instance of the neural network 
 u_pinn = NeuralNetwork(hidden_layers)
 nparams = sum(p.numel() for p in u_pinn.parameters() if p.requires_grad)
@@ -202,23 +208,15 @@ print(f'Number of trainable parameters: {nparams}')
 
 
 # treat k as a learnable parameter
-k = torch.nn.Parameter(torch.ones(1, requires_grad=True)*2)
-ks = []
+kappa = torch.nn.Parameter(torch.ones(1, requires_grad=True)*2)
+kappas = []
 
-# add mu to the optimiser
+# add k to the optimiser
 # Define an optimizer (Adam) for training the network
-optimizer = optim.Adam(list(u_pinn.parameters())+[k], lr=0.001, 
+optimizer = optim.Adam(list(u_pinn.parameters())+[kappa], lr=0.001, 
                        betas= (0.9,0.999), eps = 1e-8)
 
-
-
-# evaluate sample points in analytical function
-x_np = x_ten.detach().numpy()
-t_np = t_ten.detach().numpy()
-u_true = analytic_diffusion(x_np,t_np).reshape(1, -1)
-u_observ = u_true + np.random.normal(0,0.01,len(x_np))
-# convert observations in Pytorch tensors
-u_observ_t = torch.tensor(u_observ, requires_grad = True).float().reshape(-1,1)
+#%% --------------------------------------------------------------------------- 
 
 def PINN_diffusion_Loss(forward_pass, x_ten, t_ten,
              lambda1 = 1, lambda2 = 1):
@@ -231,8 +229,8 @@ def PINN_diffusion_Loss(forward_pass, x_ten, t_ten,
     u_xx = grad(u_x, x_ten)
     
     # PDE loss definition
-    f_pde = u_t - k*u_xx + torch.exp(-t_ten)*(torch.sin(np.pi*x_ten) 
-                                            -(torch.pi**2)*torch.sin(np.pi*x_ten))
+    f_pde = u_t - kappa*u_xx + torch.exp(-t_ten)*(torch.sin(np.pi*x_ten) 
+                                        -(torch.pi**2)*torch.sin(np.pi*x_ten))
     PDE_loss = lambda1 * MSE_func(f_pde, torch.zeros_like(f_pde)) 
     
     # Data loss
@@ -256,7 +254,7 @@ for i in range(training_iter):
     
     # Append the current loss value to the list
     loss_values.append(loss.item())
-    ks.append(k.item())
+    kappas.append(kappa.item())
 
     if i % 1000 == 0:  # print every 100 iterations
         print(f"Iteration {i}: Loss {loss.item()}")
@@ -270,6 +268,8 @@ elapsed_time = end_time - start_time
 print(f"Training time: {elapsed_time} seconds")
 
 
+#%% --------------------------------------------------------------------------- 
+
 X_ten = torch.tensor(X).float().reshape(-1, 1)
 T_ten = torch.tensor(T).float().reshape(-1, 1)
 domain_ten = torch.cat([T_ten, X_ten], dim = 1)
@@ -278,4 +278,4 @@ U_pred = u_pinn(domain_ten).reshape(dom_samples,dom_samples)
 U_true = torch.tensor(U).float()
 print(f'Relative error: {relative_l2_error(U_pred, U_true)}')
 
-plot_comparison(U, U_pred, loss_values, ks)
+plot_comparison(U, U_pred, loss_values, kappas)

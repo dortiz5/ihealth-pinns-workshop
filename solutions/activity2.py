@@ -14,8 +14,11 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 
+# torch definition of pi number
 torch.pi = torch.acos(torch.zeros(1)).item() * 2
 
+
+# Function to calculate the relative l2 error
 def relative_l2_error(u_num, u_ref):
     # Calculate the L2 norm of the difference
     l2_diff = torch.norm(u_num - u_ref, p=2)
@@ -27,55 +30,60 @@ def relative_l2_error(u_num, u_ref):
     relative_l2 = l2_diff / l2_ref
     return relative_l2
 
-def plot_comparison(time, u_true, u_pred, loss):
+
+# Function to plot the solutions
+def plot_comparison(u_true, u_pred, loss):
     
     # Convert tensors to numpy arrays for plotting
     u_pred_np = u_pred.detach().numpy()
 
-    # Create a figure with two subplots
-    _, axs = plt.subplots(2, 2, figsize=(12, 6))
+    # Create a figure with 4 subplots
+    fig1, axs = plt.subplots(1, 2, figsize=(12, 6))
     
-    # Plot the actual y values
-    axs[0, 0].imshow(u_true, extent=[-1,1,1,0])
-    axs[0, 0].set_title('Analytic solution for diffusion')
-    axs[0, 0].set_xlabel(r'$x$')
-    axs[0, 0].set_ylabel(r'$t$') 
+    # Plot the true values
+    im1 = axs[0].imshow(u_true, extent=[-1,1,1,0])
+    axs[0].set_title('Analytic solution for diffusion')
+    axs[0].set_xlabel(r'$x$')
+    axs[0].set_ylabel(r'$t$')
+    fig1.colorbar(im1, spacing='proportional',
+                            shrink=0.5, ax=axs[0])
 
-    # Plot the actual y values
-    axs[0, 1].imshow(u_pred_np, extent=[-1,1,1,0])
-    axs[0, 1].set_title('PINN solution for diffusion')
-    axs[0, 0].set_xlabel(r'$x$')
-    axs[0, 0].set_ylabel(r'$t$') 
-
-    # Plot the difference between the predicted and actual y values
-    difference = np.abs(u_true - u_pred_np)
-    axs[1, 0].imshow(difference, extent=[-1,1,1,0])
-    axs[1, 0].set_title(r'$|u(t,x) - u_{pred}(t,x)|$')
-    axs[1, 0].set_xlabel(r'$x$')
-    axs[1, 0].set_ylabel(r'$t$') 
-    # Display the plot
-    plt.legend(loc='best', frameon=False)
+    # Plot the predicted values
+    im2 = axs[1].imshow(u_pred_np, extent=[-1,1,1,0])
+    axs[1].set_title('PINN solution for diffusion')
+    axs[1].set_xlabel(r'$x$')
+    axs[1].set_ylabel(r'$t$')
+    fig1.colorbar(im2, spacing='proportional',
+                            shrink=0.5, ax=axs[1])
+        # Display the plot
     plt.tight_layout()
     plt.show()
+
 
     # Plot the loss values recorded during training
-    # Create a figure with two subplots
-    _, axs = plt.subplots(1, 1, figsize=(6, 3))
-    axs.plot(loss)
-    axs.set_xlabel('Iteration')
-    axs.set_ylabel('Loss')
-    axs.set_yscale('log')
-    axs.set_xscale('log')
-    axs.set_title('Training Progress')
-    axs.grid(True)
+    # Create a figure with  subplots
+    fig2, axs = plt.subplots(1, 2, figsize=(12, 6))
+    # Plot the difference between the predicted and true values
+    difference = np.abs(u_true - u_pred_np)
+    im3 = axs[0].imshow(difference, extent=[-1,1,1,0])
+    axs[0].set_title(r'$|u(t,x) - u_{pred}(t,x)|$')
+    axs[0].set_xlabel(r'$x$')
+    axs[0].set_ylabel(r'$t$') 
+    fig2.colorbar(im3, spacing='proportional',
+                            shrink=0.5, ax=axs[0])
+    
+    axs[1].plot(loss)
+    axs[1].set_xlabel('Iteration')
+    axs[1].set_ylabel('Loss')
+    axs[1].set_yscale('log')
+    axs[1].set_xscale('log')
+    axs[1].set_title('Training Progress')
+    axs[1].grid(True)
 
     # Display the plot
     plt.tight_layout()
     plt.show()
     
-    l2_error = relative_l2_error(u_true.reshape(-1,1),
-                            u_pred_np.reshape(-1,1))
-    print(f'Relative l2 error: {l2_error}')
 
 def grad(outputs, inputs):
     """Computes the partial derivative of an output with respect 
@@ -90,22 +98,26 @@ def grad(outputs, inputs):
                         retain_graph=True,  
                         )[0]
     
-    
-# Import NumPy for numerical operations
-import numpy as np
+#%% --------------------------------------------------------------------------- 
+# Number of samples in x and t
+dom_samples = 100
 
+# Function for the diffusion analytical solution
 def analytic_diffusion(x,t):
-    y = np.exp(-t)*np.sin(np.pi*x)
-    return y
+    u = np.exp(-t)*np.sin(np.pi*x)
+    return u
 
-x = np.linspace(-1, 1, 100)
-t = np.linspace(0, 1, 100)
+# spatial domain
+x = np.linspace(-1, 1, dom_samples)
+# temporal domain
+t = np.linspace(0, 1, dom_samples)
 
+# Domain mesh
 X, T = np.meshgrid(x, t)
-Y = analytic_diffusion(X, T)
+U = analytic_diffusion(X, T)
 
 fig, ax = plt.subplots(figsize=(6, 6))
-ax.imshow(Y, extent=[-1,1,1,0])
+ax.imshow(U, extent=[-1,1,1,0])
 ax.set_title('Analytic solution for diffusion')
 ax.set_xlabel(r'$x$')
 ax.set_ylabel(r'$t$') 
@@ -114,22 +126,37 @@ plt.tight_layout()
 plt.show()
 
 
-
+#%% --------------------------------------------------------------------------- 
 
 from scipy.stats import qmc
+# LHS sampling strategy
 sampler = qmc.LatinHypercube(d=2)
 sample = sampler.random(n=100)
 
+# lower and upper boundas of the domain
 l_bounds = [-1, 0]
 u_bounds = [ 1, 1]
 domain_xt = qmc.scale(sample, l_bounds, u_bounds)
 
+# torch tensors
 x_ten = torch.tensor(domain_xt[:, 0], requires_grad = True).float().reshape(-1,1)
 t_ten = torch.tensor(domain_xt[:, 1], requires_grad = True).float().reshape(-1,1)
 
+fig, ax = plt.subplots(figsize=(6, 6))
+ax.scatter(domain_xt[:, 0],domain_xt[:, 1], label = 'PDE collocation points')
+ax.scatter(domain_xt[:, 0],np.zeros_like(domain_xt[:, 1]), label = 'IC collocation points')
+ax.scatter(np.ones_like(domain_xt[:, 0]),domain_xt[:, 1], label = 'BC1 collocation points')
+ax.scatter(np.ones_like(domain_xt[:, 1])*-1,domain_xt[:, 1], label = 'BC2 collocation points')
+ax.set_title('Collocation points')
+ax.set_xlabel(r'$x$')
+ax.set_ylabel(r'$t$') 
+ax.legend(loc='lower left')
+plt.gca().invert_yaxis()
+plt.tight_layout()
+plt.show()
 
 
-
+#%% --------------------------------------------------------------------------- 
 torch.manual_seed(123)
 
 # training parameters
@@ -138,9 +165,10 @@ learning_rate = 0.001
 training_iter = 20000
 
 
-
+#%% --------------------------------------------------------------------------- 
 # Define a loss function (Mean Squared Error) for training the network
 MSE_func = nn.MSELoss()
+
 # Define a neural network class with user defined layers and neurons
 class NeuralNetwork(nn.Module):
     
@@ -167,8 +195,7 @@ class NeuralNetwork(nn.Module):
     def forward(self, x):
         return self.layers(x)
     
-    
-    
+#%% --------------------------------------------------------------------------- 
 # Create an instance of the neural network 
 u_pinn = NeuralNetwork(hidden_layers)
 nparams = sum(p.numel() for p in u_pinn.parameters() if p.requires_grad)
@@ -179,10 +206,10 @@ optimizer = optim.Adam(u_pinn.parameters(), lr=0.001,
                        betas= (0.9,0.999), eps = 1e-8)
 
 
-
+#%% --------------------------------------------------------------------------- 
 # HINT: 
 def PINN_diffusion_Loss(forward_pass, x_ten, t_ten, 
-             lambda1 = 1, lambda2 = 1, lambda3 = 1, lambda4 = 1):
+             lambda1 = 1, lambda2 = 1, lambda3 = 1):
 
     # ANN output, first and second derivatives
     domain = torch.cat([t_ten, x_ten], dim = 1)
@@ -199,7 +226,7 @@ def PINN_diffusion_Loss(forward_pass, x_ten, t_ten,
     # IC loss definition
     ic = torch.cat([torch.zeros_like(t_ten), x_ten], dim = 1)
     g_ic = forward_pass(ic)
-    IC_loss = lambda2 * MSE_func(g_ic, -torch.sin(torch.pi*x_ten))
+    IC_loss = lambda2 * MSE_func(g_ic, torch.sin(torch.pi*x_ten))
 
     # BC x = -1 definition
     bc1 = torch.cat([t_ten, -torch.ones_like(x_ten)], dim = 1)
@@ -240,3 +267,14 @@ for i in range(training_iter):
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"Training time: {elapsed_time} seconds")
+
+#%% --------------------------------------------------------------------------- 
+X_ten = torch.tensor(X).float().reshape(-1, 1)
+T_ten = torch.tensor(T).float().reshape(-1, 1)
+domain_ten = torch.cat([T_ten, X_ten], dim = 1)
+U_pred = u_pinn(domain_ten).reshape(dom_samples,dom_samples)
+
+U_true = torch.tensor(U).float()
+print(f'Relative error: {relative_l2_error(U_pred, U_true)}')
+
+plot_comparison(U, U_pred, loss_values)
