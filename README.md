@@ -181,8 +181,6 @@ If a local installation is not feasible, you can launch the repository on [Binde
 
 _Notes:_
 * _If you exit a Binder session, your work will be lost, so make sure to save any work you want to keep._
-* _Due to limited resources on Binder, running the training for exercises 3 and 4 may be challenging._
-
 
 
 ## License
