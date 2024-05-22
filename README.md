@@ -120,8 +120,7 @@ should provide the necessary knowledge.
 ## Instalation and setup
 There are three options for participating in this workshop, with instructions provided below:
 
- - via a local install
- - on [Google Colab](#google-colab)
+ - via a [local install](#local-install)
  - on [binder](#binder)
 
 We highly recommend the local install approach. However, if you encounter issues with the installation process or are unfamiliar with the terminal/installation process, you have the option to run the notebooks on [Google Colab](#google-colab) or [binder](#binder).
@@ -176,22 +175,9 @@ The following step is sometimes useful if you're having trouble with your jupyte
 python -m ipykernel install --user --name=pinn-ihealth-tutorial
 ```
 
-### Google Colab
-
-Using Colab is advantageous as it provides access to GPU resources. To open the notebooks in Google Colab, click the links below for each exercise:
-
-* [Exercise 01](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/exercises/01_penguin_classification.ipynb) - [Worked Solution 01](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/worked-solutions/01_penguin_classification_solutions.ipynb)
-* [Exercise 02](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/exercises/02_penguin_regression.ipynb) - [Worked Solution 02](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/worked-solutions/02_penguin_regression_solutions.ipynb)
-* [Exercise 03](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/exercises/03_mnist_classification.ipynb) - [Worked Solution 03](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/worked-solutions/03_mnist_classification_solutions.ipynb)
-* [Exercise 04](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/exercises/04_ellipse_regression.ipynb) - [Worked Solution 04](https://colab.research.google.com/github/Cambridge-ICCS/ml-training-material/blob/colab/worked-solutions/04_ellipse_regression_solutions.ipynb)
-
-_Notes:_
-* _Running in Google Colab requires a Google account._
-* _If you exit a Colab session, your work will be lost, so make sure to save any work you want to keep._
-
 ### Binder
 
-If a local installation is not feasible and you prefer not to sign up for a Google account, you can launch the repository on [Binder](https://mybinder.org/v2/gh/Cambridge-ICCS/ml-training-material/main).
+If a local installation is not feasible, you can launch the repository on [Binder](https://mybinder.org/v2/gh/Cambridge-ICCS/ml-training-material/main).
 
 _Notes:_
 * _If you exit a Binder session, your work will be lost, so make sure to save any work you want to keep._
