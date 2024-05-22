@@ -89,15 +89,15 @@ Basic mathematics in:
 Artificial Neural Networks:
  - Some basic concepts
 
-### Python
-The course will be conducted in Python using PyTorch. While prior knowledge of PyTorch is not required, we assume participants are comfortable with the basics of Python 3. This includes:
+### Python 3.11
+The course will be conducted in Python using PyTorch. While prior knowledge of PyTorch is not required, we assume participants are comfortable with the basics of Python 3.11. This includes:
 
  - basic mathematical operations
  - Writing and executing scripts/programs
  - Creating and using functions
  - Understanding the concept of object oriented programming [(OOP)](https://eli5.gg/Object-oriented%20programming)
  - familiarity with the following libraries:
-    - [`numpy`](https://numpy.org/)  for mathematical and array operations
+    - [`numpy`](https://numpy.org/) and [scipy](https://scipy.org/)  for mathematical and array operations
     - [`matplotlib`](https://matplotlib.org/) for plotting and visualization
     - [`PyTorch`](https://pytorch.org/) for high level training of ANN 
  - Understanding the concept of a [jupyter notebook](https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/index.html)
@@ -146,7 +146,7 @@ Installing conda is easy and it run in *Windows, macOS and Linux*. You just have
 #### 3. Creating a conda environment
 **Make sure you have conda installed**. This project has been package with a [`pinn-ihealth-tutorial.yml`](pinn-ihealth-tutorial.yml) to create and install the `python3` environment. 
 
-In windows you have open the *Anaconda Prompt*, in macOS the *terminal application* and in Linux, a *terminal* window. Then, type the following code:
+From within the root directory `ihealth-pinns-workshop/`, open the *Anaconda Prompt* n _Windows_, and *terminal* in macOS and Linux. Then, run the following code:
 
 ```
 conda env create -f pinn-ihealth-tutorial.yml
@@ -171,7 +171,10 @@ jupyter notebook
 ```
 This command should then point you to the right location within your browser to use the notebook, typically [http://localhost:8888/](http://localhost:8888/).
 
-
+The following step is sometimes useful if you're having trouble with your jupyter notebook finding the environment. You will want to do this before launching the jupyter notebook.
+```
+python -m ipykernel install --user --name=pinn-ihealth-tutorial
+```
 
 ### Google Colab
 
