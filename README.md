@@ -59,50 +59,77 @@ Some interesting videos and material for further studies:
 
 - Neural networks: [Interesting video series by 3Blue1Brown about neural networks and machine learning](https://www.3blue1brown.com/topics/neural-networks)
 
-- Automatic differentiation. Here you can find 3 links about automatic differentiation and dual numbers: [link 1](https://thenumb.at/Autodiff/), [link 2](https://blog.demofox.org/2014/12/30/dual-numbers-automatic-differentiation/), [link 3](https://en.wikipedia.org/wiki/Dual_number)
+- Automatic differentiation. Here you can find 3 links about automatic differentiation and dual numbers: [link 1](https://thenumb.at/Autodiff/), [link 2](https://blog.demofox.org/2014/12/30/dual-numbers-automatic-differentiation/), [link 3](https://en.wikipedia.org/wiki/Dual_number). Also, here you can find a  [tutorial](https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#a-gentle-introduction-to-torch-autograd) in 
+PyTorch
 
-- Autodifferentiation (torch.autograd) is a powerful tool for calculating the gradients of the PINN with respect to its input to evaluate the loss function; for more information, refer to the [tutorial](https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#a-gentle-introduction-to-torch-autograd).
-
-- [Physics Informed Neural Network for Computer Vision and Medical Imaging [1]](https://collab.dvb.bayern/display/TUMdlma/Physics+Informed+Neural+Network+for+Computer+Vision+and+Medical+Imaging).
+- [Physics Informed Neural Network for Computer Vision and Medical Imaging [1]](https://collab.dvb.bayern/display/TUMdlma/Physics+Informed+Neural+Network+for+Computer+Vision+and+Medical+Imaging)
 
 - Ben Moseley [personal blog](https://benmoseley.blog/)
 
+## Teaching material
+
+### Slides
+ADD SLIDES
+
+### Exercises and solutions
+The exercises for this course are located in the [notebooks](notebooks/) directory, provided as partially completed Jupyter notebooks. Worked solutions can be found in the [solutions](solutions/) directory, and are intended for review after the course, in case you missed anything. 
+
+
+## Preparation and prerequisites
+To maximize the benefits of this session, we assume you have a basic understanding in certain areas and that you complete some preparatory work in advance. Below, we outline the expected knowledge and provide resources for further reading if needed.
+
+### Mathematics and machine learning
+
+Basic mathematics in:
+ - Basic calculus - video series by [3Blue1Brown](https://www.youtube.com/playlist?list=PL0-GT3co4r2wlh6UHTUeQsrf3mlS2lk6x)
+ - Ordinary differential equations (ODE) - video series by [3Blue1Brown](https://www.youtube.com/playlist?list=PLZHQObOWTQDNPOjrT6KVlfJuKtYTftqH6)
+ - Partial diferential equations (PDE) - video by [3Blue1Brown](https://www.youtube.com/watch?v=ly4S0oi3Yz8&ab_channel=3Blue1Brown)
+ - Optimization
+
+Artificial Neural Networks:
+ - Some basic concepts
+
+### Python
+The course will be conducted in Python using PyTorch. While prior knowledge of PyTorch is not required, we assume participants are comfortable with the basics of Python 3. This includes:
+
+ - basic mathematical operations
+ - Writing and executing scripts/programs
+ - Creating and using functions
+ - Understanding the concept of object oriented programming [(OOP)](https://eli5.gg/Object-oriented%20programming)
+ - familiarity with the following libraries:
+    - [`numpy`](https://numpy.org/)  for mathematical and array operations
+    - [`matplotlib`](https://matplotlib.org/) for plotting and visualization
+    - [`PyTorch`](https://pytorch.org/) for high level training of ANN 
+ - Understanding the concept of a [jupyter notebook](https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/index.html)
+
+Also, for the course, we recommend you to have the following:
+
+- A text editor, such as [vim/neovim](https://neovim.io/), [gedit](https://gedit.en.softonic.com/), [vscode](https://code.visualstudio.com/), or [sublimetext](https://www.sublimetext.com/), [pycharm](https://www.jetbrains.com/pycharm/) to open and edit python code files.
+- A terminal emulator, like [GNOME Terminal](https://help.gnome.org/users/gnome-terminal/stable/), [wezterm](https://wezfurlong.org/wezterm/index.html), [Windows Terminal (for Windows)](https://learn.microsoft.com/en-us/windows/terminal/), or [iTerm (for macOS)](https://iterm2.com/).
+- A Python virtual environment. We encourage you to install [miniconda](https://docs.anaconda.com/free/miniconda/index.html).
+
+
+### git and GitHub
+You will be expected to know how to
+- clone or fork a repository,
+- commit, and push.
+
+The [workshop from the 2022 ICCS Summer School](https://www.youtube.com/watch?v=ZrwzK4CnJ3Q) 
+should provide the necessary knowledge.
 
 ## Instalation and setup
 There are three options for participating in this workshop, with instructions provided below:
 
  - via a local install
- - on Google Colab
- - on Binder
+ - on [Google Colab](#google-colab)
+ - on [binder](#binder)
 
-We recommend the local install approach, especially if you forked the repository, as it is the easiest way to keep a copy of your work and push it back to GitHub.
-
-However, if you encounter issues with the installation process or are unfamiliar with the terminal/installation process, you have the option to run the notebooks on Google Colab or Binder.
+We highly recommend the local install approach. However, if you encounter issues with the installation process or are unfamiliar with the terminal/installation process, you have the option to run the notebooks on [Google Colab](#google-colab) or [binder](#binder).
 
 
 ### Local Install
 
-Recomendamos usar ``conda`` para instalar los paquetes necesarios para
-este tutorial.
 
-Tenga en cuenta también que este tutorial está escrito para Python 3.X.
-
-
-Cree un entorno conda usando el archivo ``pinn-tutorial.yml`` en la ruta
-del repositorio usando
-
-```console
-conda env create -f pinn-tutorial.yml
-```
-
-Esto creará un entorno conda llamado "pinn-tutorial" con todos los
-paquetes requeridos.
-
-Puedes activar el entorno con
-
-```console
-conda activate pinn-tutorial
-```
 
 ## Comprobando la instalación
 
@@ -118,16 +145,6 @@ Para comprobar si todo funciona, ejecute las demostraciones con
 python demo.py
 ```
 
-## Licencia
-
-Todo el código está bajo licencia MIT y el contenido bajo licencia Creative Commons Attribute.
-
-El contenido de este repositorio está bajo licencia bajo la
-[Licencia Creative Commons Attribution 4.0](http://choosealicense.com/licenses/cc-by-4.0/),
-y el código fuente que acompaña al contenido tiene 
-[Licencia MIT](https://opensource.org/licenses/mit-license.php).
-
-
 
 ### Local Install
 
@@ -135,4 +152,10 @@ y el código fuente que acompaña al contenido tiene
 
 ### Binder
 
-## References
+## License
+All code is licensed under the MIT License, and the content is licensed under Creative Commons Attribution.
+
+The content of this repository is licensed under the [Creative Commons Attribution 4.0 License](http://choosealicense.com/licenses/cc-by-4.0/), and the accompanying source code is licensed under the [MIT License](https://opensource.org/licenses/mit-license.php).
+
+## Acknowledgements
+This repository was created based on the template of the [Institute of Computing for Climate Science](https://github.com/Cambridge-ICCS/ml-training-material)
