@@ -1,46 +1,38 @@
 # Applications of Physics-Informed Neural Networks (PINNs)
 
+This repository contains material for the **workshop** on physics-informed neural network (PINNs) applications.
+
 <!-- [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dortiz5/ihealth-pinns-workshop/HEAD)-->
 
 
 ## Introduction
-
-This repository contains material for the workshop on physics-informed neural network (PINNs) applications.
-
 PINNs are deep learning models recently proposed as an alternative method for solving direct or inverse problems involving mathematical models of a physical problem [(Raissi *etal.* 2019)](https://www.sciencedirect.com/science/article/pii/S0021999118307125), [(Karniadakis *etal.* 2021)](https://www.nature.com/articles/s42254-021-00314-5). They rely on the fundamental universal approximation theorem, which shows that, under certain architectures, artificial neural networks have the ability to accurately approximate different nonlinear functions (or operators) [(Hornik, 1991)](https://www.sciencedirect.com/science/article/pii/089360809190009T?via%3Dihub),[(Barron, 1993)](https://ieeexplore.ieee.org/document/256500),[(Villota 2019)](https://investigacion.unirioja.es/documentos/5fbf7e47299952682503c2fa/). In addition, the incorporation of automatic differentiation [(Baydin *etal.*, 2018)](https://arxiv.org/abs/1502.05767), outlines PINNs as an innovative option for the solution of complex physical models without the need of big amount of data. 
-
-
-## Organizers
-
- - [Rodrigo Salas, Dr. Eng.](https://sites.google.com/uv.cl/rodrigo-salas)
- - [David Ortiz, Ph. D.](https://github.com/dortiz5)
-
-If you have questions, comments or recommendations, you can send us an email 📧 at any of these addresses:
-
-Rodrigo Salas [rodrigo.salas@uv.cl](mailto:rodrigo.salas@uv.cl)
-
-David Ortiz [david.ortiz.puerta@gmail.com](mailto:david.ortiz.puerta@gmail.com) | [dortiz5@uc.cl](mailto:dortiz5@uc.cl)
-
 
 ## Schedule
 The workshop will be held on Friday 24 May 2024, between 14 and 18hrs (CLT). 
 
-| Time          | Activity |
-| ------------- | --------- |
-| 14:00 – 15:15 | Welcome and introduction to applications|
-| 15:15 – 16:00 | Computational activity 1: ANN vs. PINNs [![Activity 1](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-1.ipynb)|
-| 16:00 – 16:15 | Coffee Break |
-| 16:15 – 17:15 | Computational activity 2: Forward applications [![Activity 2](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-2.ipynb)|
-| 17:15 – 17:20 | Small break |
-| 17:20 – 17:55 | Computational activity 3: Inverse applications [![Activity 3](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-3.ipynb)|
+| Time          | Activity | |
+| ------------- | --------- | --- |
+| 14:00 – 15:15 | Welcome and introduction to applications| |
+| 15:15 – 16:00 | Computational activity 1: ANN vs. PINNs | [![Activity 1](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-1.ipynb)|
+| 16:00 – 16:15 | Coffee Break | |
+| 16:15 – 17:15 | Computational activity 2: Forward applications | [![Activity 2](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-2.ipynb)|
+| 17:15 – 17:20 | Small break | |
+| 17:20 – 17:55 | Computational activity 3: Inverse applications | [![Activity 3](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-3.ipynb)|
 
+## Organizers
 
-## Contents
+- Rodrigo Salas [rodrigo.salas@uv.cl](mailto:rodrigo.salas@uv.cl)
 
-- [Learning Objectives](#Learning-objectives)
-- [Some related material](#Some-related-material)
-- [Preparation and prerequisites](#preparation-and-prerequisites)
-- [Installation and setup](#installation-and-setup)
+- David Ortiz [david.ortiz.puerta@gmail.com](mailto:david.ortiz.puerta@gmail.com) | [dortiz5@uc.cl](mailto:dortiz5@uc.cl)
+
+## Acknowledgements
+This repository was created based on the template of the [Institute of Computing for Climate Science](https://github.com/Cambridge-ICCS/ml-training-material) and the [harmonic oscillator pinn workshop](https://github.com/benmoseley/harmonic-oscillator-pinn-workshop) by Ben Moseley.
+
+## Additional information
+
+<details>
+<summary> <samp>&#9776; Learning objectives</samp></summary>
 
 ## Learning objectives
 The key learning objective from this workshop could be simply summarised as:
@@ -54,8 +46,11 @@ More specifically we aim to:
  - explore the formulation and solution of direct and inverse problems using PINNs in 1D and 2D models, and
  - discuss advanced practices and techniques in developing and optimizing PINNs.
 
+</details>
+<details>
+<summary> <samp>&#9776; Related material</samp></summary>
 
-## Some related material
+## Related material
 Some interesting videos and material for further studies:
 
 - Previous workshop by [Prof. Ph.D. Francisco Sahli](https://fsahli.github.io/): [Workshop on April](https://fsahli.github.io/PINN-notes/)
@@ -69,14 +64,20 @@ PyTorch
 
 - Ben Moseley [personal blog](https://benmoseley.blog/)
 
-## Teaching material
+</details>
+<details>
+<summary> <samp>&#9776; Teaching material</samp></summary>
 
+## Teaching material
 ### Slides
 In the directory [slides](slides/) you can find some teaching material.
 
 ### Exercises and solutions
 The exercises for this course are located in the [notebooks](notebooks/) directory, provided as partially completed Jupyter notebooks. Worked solutions can be found in the [solutions](solutions/) directory, and are intended for review after the course, in case you missed anything. 
 
+</details>
+<details>
+<summary> <samp>&#9776; Preparation and prerequisites</samp></summary>
 
 ## Preparation and prerequisites
 To maximize the benefits of this session, we assume you have a basic understanding in certain areas and that you complete some preparatory work in advance. Below, we outline the expected knowledge and provide resources for further reading if needed.
@@ -119,6 +120,10 @@ You will be expected to know how to
 
 The [workshop from the 2022 ICCS Summer School](https://www.youtube.com/watch?v=ZrwzK4CnJ3Q) 
 should provide the necessary knowledge.
+
+</details>
+<details>
+<summary> <samp>&#9776; Installation and setup</samp></summary>
 
 ## Installation and setup
 There are three options for participating in this workshop, with instructions provided below:
@@ -190,17 +195,10 @@ _Notes:_
 * _Running in Google Colab requires you to have a Google account._
 * _If you leave a Colab session your work will be lost, so be careful to save any work
   you want to keep._
-
 <!--### Binder
 
 If a local installation is not feasible, you can launch the repository on [Binder](https://mybinder.org/v2/gh/dortiz5/ihealth-pinns-workshop/HEAD).
 
 _Notes:_
 * _If you exit a Binder session, your work will be lost, so make sure to save any work you want to keep._-->
-
-
-## License
-All code and content of this repository is licensed under the [MIT License](https://opensource.org/licenses/mit-license.php).
-
-## Acknowledgements
-This repository was created based on the template of the [Institute of Computing for Climate Science](https://github.com/Cambridge-ICCS/ml-training-material) and the [harmonic oscillator pinn workshop](https://github.com/benmoseley/harmonic-oscillator-pinn-workshop) by Ben Moseley.
+</details>
