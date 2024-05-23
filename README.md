@@ -1,5 +1,7 @@
 # Applications of Physics-Informed Neural Networks (PINNs)
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dortiz5/ihealth-pinns-workshop/HEAD)
+
 ## Introduction
 
 This repository contains material for the workshop on physics-informed neural network (PINNs) applications.
@@ -69,7 +71,7 @@ PyTorch
 ## Teaching material
 
 ### Slides
-ADD SLIDES
+In the directory [slides](slides/) you can find some teaching material.
 
 ### Exercises and solutions
 The exercises for this course are located in the [notebooks](notebooks/) directory, provided as partially completed Jupyter notebooks. Worked solutions can be found in the [solutions](solutions/) directory, and are intended for review after the course, in case you missed anything. 
@@ -177,7 +179,7 @@ python -m ipykernel install --user --name=pinn-ihealth-tutorial
 
 ### Binder
 
-If a local installation is not feasible, you can launch the repository on [Binder].
+If a local installation is not feasible, you can launch the repository on [Binder](https://mybinder.org/v2/gh/dortiz5/ihealth-pinns-workshop/HEAD).
 
 _Notes:_
 * _If you exit a Binder session, your work will be lost, so make sure to save any work you want to keep._
