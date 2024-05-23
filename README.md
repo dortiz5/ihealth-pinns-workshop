@@ -2,11 +2,6 @@
 
 <!-- [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dortiz5/ihealth-pinns-workshop/HEAD)-->
 
-[![Activity 1](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-1.ipynb)
-[![Activity 2](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-2.ipynb)
-[![Activity 3](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-3.ipynb)
-
-
 
 ## Introduction
 
@@ -33,11 +28,11 @@ The workshop will be held on Friday 24 May 2024, between 14 and 18hrs (CLT).
 | Time          | Activity |
 | ------------- | --------- |
 | 14:00 – 15:15 | Welcome and introduction to applications|
-| 15:15 – 16:00 | Computational activity 1: ANN vs. PINNs |
+| 15:15 – 16:00 | Computational activity 1: ANN vs. PINNs [![Activity 1](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-1.ipynb)|
 | 16:00 – 16:15 | Coffee Break |
-| 16:15 – 17:15 | Computational activity 2: Forward applications |
+| 16:15 – 17:15 | Computational activity 2: Forward applications [![Activity 2](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-2.ipynb)|
 | 17:15 – 17:20 | Small break |
-| 17:20 – 17:55 | Computational activity 3: Inverse applications |
+| 17:20 – 17:55 | Computational activity 3: Inverse applications [![Activity 3](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-3.ipynb)|
 
 
 ## Contents
@@ -125,7 +120,7 @@ You will be expected to know how to
 The [workshop from the 2022 ICCS Summer School](https://www.youtube.com/watch?v=ZrwzK4CnJ3Q) 
 should provide the necessary knowledge.
 
-## Instalation and setup
+## Installation and setup
 There are three options for participating in this workshop, with instructions provided below:
 
  - via a [local install](#local-install)
@@ -208,4 +203,4 @@ _Notes:_
 All code and content of this repository is licensed under the [MIT License](https://opensource.org/licenses/mit-license.php).
 
 ## Acknowledgements
-This repository was created based on the template of the [Institute of Computing for Climate Science](https://github.com/Cambridge-ICCS/ml-training-material) and the [harminic oscillator pinn workshop](https://github.com/benmoseley/harmonic-oscillator-pinn-workshop) by Ben Moseley.
+This repository was created based on the template of the [Institute of Computing for Climate Science](https://github.com/Cambridge-ICCS/ml-training-material) and the [harmonic oscillator pinn workshop](https://github.com/benmoseley/harmonic-oscillator-pinn-workshop) by Ben Moseley.
