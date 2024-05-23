@@ -1,6 +1,12 @@
 # Applications of Physics-Informed Neural Networks (PINNs)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dortiz5/ihealth-pinns-workshop/HEAD)
+<!-- [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dortiz5/ihealth-pinns-workshop/HEAD)-->
+
+[![Activity 1](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-1.ipynb)
+[![Activity 2](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-2.ipynb)
+[![Activity 3](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-3.ipynb)
+
+
 
 ## Introduction
 
@@ -123,9 +129,10 @@ should provide the necessary knowledge.
 There are three options for participating in this workshop, with instructions provided below:
 
  - via a [local install](#local-install)
- - on [binder](#binder)
+ - on [Google Colab](#google-colab)
+ <!-- - on [binder](#binder)-->
 
-We highly recommend the local install approach. However, if you encounter issues with the installation process or are unfamiliar with the terminal/installation process, you have the option to run the notebooks on [Google Colab](#google-colab) or [binder](#binder).
+We highly recommend the local install approach. However, if you encounter issues with the installation process or are unfamiliar with the terminal/installation process, you have the option to run the notebooks on [Google Colab](#google-colab) <!--or [binder](#binder)-->.
 
 
 ### Local Install
@@ -177,12 +184,24 @@ The following step is sometimes useful if you're having trouble with your jupyte
 python -m ipykernel install --user --name=pinn-ihealth-tutorial
 ```
 
-### Binder
+### Google Colab
+To launch the notebooks in Google Colab click the following links for each of the exercises:
+
+* [Activity 1](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-1.ipynb) 
+* [Activity 2](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-2.ipynb) 
+* [Activity 3](https://colab.research.google.com/github/dortiz5/ihealth-pinns-workshop/blob/main/notebooks/activity-3.ipynb) 
+
+_Notes:_
+* _Running in Google Colab requires you to have a Google account._
+* _If you leave a Colab session your work will be lost, so be careful to save any work
+  you want to keep._
+
+<!--### Binder
 
 If a local installation is not feasible, you can launch the repository on [Binder](https://mybinder.org/v2/gh/dortiz5/ihealth-pinns-workshop/HEAD).
 
 _Notes:_
-* _If you exit a Binder session, your work will be lost, so make sure to save any work you want to keep._
+* _If you exit a Binder session, your work will be lost, so make sure to save any work you want to keep._-->
 
 
 ## License
