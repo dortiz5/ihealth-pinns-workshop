@@ -298,11 +298,11 @@ def PINNLoss(forward_pass, t_phys, t_data, theta_data,
              lambda1 = 1, lambda2 = 1, lambda3 = 1, lambda4 = 1):
 
     # ANN output, first and second derivatives
-    theta_nn1 = forward_pass(t_phys)
-    theta_nn_d = grad(theta_nn1, t_phys)
-    theta_nn_dd = grad(theta_nn_d, t_phys)
+    theta_pinn1 = forward_pass(t_phys)
+    theta_pinn_dt = grad(theta_pinn1, t_phys)
+    theta_pinn_ddt = grad(theta_pinn_dt, t_phys)
     
-    f_ode = theta_nn_dd + (g/L) * torch.sin(theta_nn1)
+    f_ode = theta_pinn_ddt + (g/L) * torch.sin(theta_pinn1)
     ODE_loss = lambda1 * MSE_func(f_ode, torch.zeros_like(f_ode)) 
     
     g_ic = forward_pass(t0)

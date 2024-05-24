@@ -29,6 +29,8 @@ The workshop will be held on Friday 24 May 2024, between 14 and 18hrs (CLT).
 ## Acknowledgements
 This repository was created based on the template of the [Institute of Computing for Climate Science](https://github.com/Cambridge-ICCS/ml-training-material) and the [harmonic oscillator pinn workshop](https://github.com/benmoseley/harmonic-oscillator-pinn-workshop) by Ben Moseley.
 
+Also, we would like to thank the Millennium Institute for Intelligent Healthcare Engineering - [iHEALTH](https://i-health.cl/) (ICN2021_004)
+
 ## Additional information
 
 <details>
@@ -47,6 +49,8 @@ More specifically we aim to:
  - discuss advanced practices and techniques in developing and optimizing PINNs.
 
 </details>
+
+
 <details>
 <summary> <samp>&#9776; Related material</samp></summary>
 
